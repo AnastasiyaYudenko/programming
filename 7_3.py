@@ -2,11 +2,6 @@ import unittest
 import os
 import shutil
 
-'''Теперь организуйте класс для тестирования следующим образом: 
-в методе setUp() вызовите написанную Вами функцию; 
-в тестовом методе проверьте, что, например, файл не пуст и в нём содержится нужный текст; 
-в методе tearDown() удалите созданную директорию (shutil.rmtree('/folder_name'))'''
-
 
 def file_dir_test(directory):
     os.makedirs(directory)

@@ -1,6 +1,7 @@
 import unittest
 import random
 
+
 class NumbersTest(unittest.TestCase):
 
     def test_even(self):
