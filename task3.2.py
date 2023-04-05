@@ -7,18 +7,19 @@ with open('RomeoAndJuliet.json', 'r') as s:
     for act in acts:
         scenes = act["scenes"]
 
-        scene_chars = []
+        scene_chars = set()
         for scene in scenes:
             replics = scene["action"]
             for repl in replics:
                 chars = repl["character"]
-                scene_chars.append(chars)
+                scene_chars.add(chars)
 
-            characters.append(list(set(scene_chars)))
+            characters.append(list(scene_chars))
 
 print(characters)
 with open('charac.json', 'w') as a:
+
     to_write = []
     for line in characters:
-        to_write.append(json.dumps(', '.join(line)))
-    json.dump(to_write, a, ensure_ascii=False, indent=4)
+        a.write(json.dumps(line))
+        a.write('\n')

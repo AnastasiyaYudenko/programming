@@ -12,7 +12,7 @@ with open("RomeoAndJuliet.json", 'r') as f:
             replics = scene["action"]
             for repl in replics:
                 char = repl["character"]
-                if char in list(repl_count.keys()):
+                if char in repl_count:
                     repl_count[char] += 1
                 else:
                     repl_count[char] = 1
@@ -22,4 +22,3 @@ with open("RomeoAndJuliet.json", 'r') as f:
     for char, repls in repl_count.items():
         if repls == max_repls:
             print(char)
-    print(repl_count)
