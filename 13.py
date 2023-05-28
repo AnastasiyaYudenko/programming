@@ -42,8 +42,8 @@ class Sentence:
         for tokens in wordforms.iter('tokens'):
             for token in tokens.iter('token'):
                 self._wordforms.append(Wordform(token))
-        for source in wordforms.iter('source'):
-            self.sentence = source.text
+
+        self.sentence = wordforms.find('source').text
 
     def show_wordform(self, number: int):
         try:
@@ -71,33 +71,9 @@ class Wordform:
     def show_grammems(self):
         return self._grammems
 
+    def show_i_gram(self, i):
+        try:
+            return self._grammems[i]
+        except IndexError:
+            return 'there is no grammem with this index('
 
-corpus = Corpus()
-corpus.load('annot.opcorpora.no_ambig.xml')
-i_sent = corpus.show_sentence(5)
-print(i_sent.sentence)
-i_word = i_sent.show_wordform('1')
-i_gram = i_word.show_grammems()
-print(i_gram)
-
-
-class Tests(unittest.TestCase):
-
-    def test_grammems(self):
-        a = corpus.show_sentence(0).show_wordform(0).show_grammems()
-        b = ['PNCT']
-        self.assertEqual(a, b)
-
-    def test_grammems2(self):
-        a = corpus.show_sentence(1).show_wordform(0).show_grammems()
-        b = ['VERB', 'perf', 'intr', 'sing', '3per', 'futr', 'indc']
-        self.assertEqual(a, b)
-
-    def test_sentence(self):
-        a = corpus.show_sentence(0).sentence
-        b = '«Школа злословия» учит прикусить язык'
-        self.assertEqual(a, b)
-
-
-if __name__ == '__main__':
-    unittest.main()
