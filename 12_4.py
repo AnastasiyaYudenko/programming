@@ -6,6 +6,9 @@ class Movie:
         self.date_of_creation = date
         self.secret_word = secret_word
 
+    def get_spoiler(self):
+        return self.__spoiler
+
     def movie_birthday(self, today):
         if today == self.date_of_creation:
             self.years += 1
@@ -29,3 +32,4 @@ print(my_movie.years)
 my_movie.tell_me_one_spoiler()
 my_movie.change_spoiler('she will merry another men, but cheat on him')
 my_movie.tell_me_one_spoiler()
+print(my_movie.get_spoiler())
